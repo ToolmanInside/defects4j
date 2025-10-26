@@ -126,6 +126,11 @@ Steps to set up Defects4J
 2. Initialize Defects4J (download the project repositories and external libraries, which are not included in the git repository for size purposes and to avoid redundancies):
     - `cd defects4j`
     - `cpanm --installdeps .`
+
+3. Download the necessary plugins:
+    - Download all files in https://pan.baidu.com/s/10a5gJ1BwSprUXkdpkwx9gQ?pwd=r8ht
+    - Put `build-analyzer-0.0.1.jar`, `defects4j-gradle-deps-v3.zip`, `defects4j-gradle-dists-v3.zip`, `evosuite-1.1.0.jar`, `evosuite-standalone-runtime-1.1.0.jar`, `major-3.0.1_jre11.zip` and `randoop-4.3.4.zip` in `defects4j` folder
+    - Put `defects4j-repos-v3.zip` in `defects4j/project_repos/`
     - `./init.sh`
 
 3. Add Defects4J's executables to your PATH:
