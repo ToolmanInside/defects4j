@@ -69,15 +69,12 @@ main() {
     MAJOR_VERSION="3.0.1"
     MAJOR_URL="https://mutation-testing.org/downloads"
     MAJOR_ZIP="major-${MAJOR_VERSION}_jre11.zip"
-    cd "$BASE" && rm -rf major \
-               && download_url_and_unzip "$MAJOR_URL/$MAJOR_ZIP" \
-               && rm "$MAJOR_ZIP" \
-               && perl -pi -e '$_ .= qq(    -Djava.awt.headless=true \\\n) if /CodeCacheSize/' \
-                    major/bin/ant \
-               && perl -pi -e '$_ .= qq(\nif [ -z "\$MML" ]; then javac \$*; exit \$?; fi\n) if /^REFACTOR=/' \
-                    major/bin/major \
-               && perl -pi -e '$_ = qq(REFACTOR=\${REFACTOR:-"enable.decl.refactor enable.method.refactor"}\n) if /^REFACTOR=/' \
-                    major/bin/major \
+    cd "$BASE" 
+    rm -rf major 
+    unzip -o "$MAJOR_ZIP" 
+    perl -pi -e '$_ .= qq(    -Djava.awt.headless=true \\\n) if /CodeCacheSize/' major/bin/ant 
+    perl -pi -e '$_ .= qq(\nif [ -z "\$MML" ]; then javac \$*; exit \$?; fi\n) if /^REFACTOR=/' major/bin/major 
+    perl -pi -e '$_ = qq(REFACTOR=\${REFACTOR:-"enable.decl.refactor enable.method.refactor"}\n) if /^REFACTOR=/' major/bin/major 
 
     ############################################################################
     #
@@ -89,8 +86,10 @@ main() {
     EVOSUITE_URL="https://github.com/EvoSuite/evosuite/releases/download/v${EVOSUITE_VERSION}"
     EVOSUITE_JAR="evosuite-${EVOSUITE_VERSION}.jar"
     EVOSUITE_RT_JAR="evosuite-standalone-runtime-${EVOSUITE_VERSION}.jar"
-    cd "$DIR_LIB_GEN" && download_url "$EVOSUITE_URL/$EVOSUITE_JAR"
-    cd "$DIR_LIB_RT"  && download_url "$EVOSUITE_URL/$EVOSUITE_RT_JAR"
+    # cd "$DIR_LIB_GEN" && download_url "$EVOSUITE_URL/$EVOSUITE_JAR"
+    # cd "$DIR_LIB_RT"  && download_url "$EVOSUITE_URL/$EVOSUITE_RT_JAR"
+    cp "$BASE/$EVOSUITE_JAR" "$DIR_LIB_GEN/$EVOSUITE_JAR"
+    cp "$BASE/$EVOSUITE_RT_JAR" "$DIR_LIB_RT/$EVOSUITE_RT_JAR"
     # Set symlinks for the supported version of EvoSuite
     (cd "$DIR_LIB_GEN" && ln -sf "$EVOSUITE_JAR" "evosuite-current.jar")
     (cd "$DIR_LIB_RT" && ln -sf "$EVOSUITE_RT_JAR" "evosuite-rt.jar")
@@ -107,7 +106,7 @@ main() {
     RANDOOP_JAR="randoop-all-${RANDOOP_VERSION}.jar"
     REPLACECALL_JAR="replacecall-${RANDOOP_VERSION}.jar"
     COVEREDCLASS_JAR="covered-class-${RANDOOP_VERSION}.jar"
-    (cd "$DIR_LIB_GEN" && download_url_and_unzip "$RANDOOP_URL/$RANDOOP_ZIP")
+    (cd "$DIR_LIB_GEN" && unzip -o "$RANDOOP_ZIP")
     # Set symlink for the supported version of Randoop
     (cd "$DIR_LIB_GEN" && ln -sf "randoop-${RANDOOP_VERSION}/$RANDOOP_JAR" "randoop-current.jar")
     (cd "$DIR_LIB_GEN" && ln -sf "randoop-${RANDOOP_VERSION}/$REPLACECALL_JAR" "replacecall-current.jar")
@@ -137,8 +136,8 @@ main() {
     fi
 
     # Only download archive if the server has a newer file
-    download_url $HOST_URL/$GRADLE_DISTS_ZIP
-    download_url $HOST_URL/$GRADLE_DEPS_ZIP
+    # download_url $HOST_URL/$GRADLE_DISTS_ZIP
+    # download_url $HOST_URL/$GRADLE_DEPS_ZIP
     new_dists_ts=$(get_modification_timestamp $GRADLE_DISTS_ZIP)
     new_deps_ts=$(get_modification_timestamp $GRADLE_DEPS_ZIP)
 
@@ -159,7 +158,8 @@ main() {
     BUILD_ANALYZER_JAR=build-analyzer-$BUILD_ANALYZER_VERSION.jar
     BUILD_ANALYZER_URL="https://github.com/jose/build-analyzer/releases/download/v$BUILD_ANALYZER_VERSION/$BUILD_ANALYZER_JAR"
     BUILD_ANALYZER_JAR_LOCAL="analyzer.jar"
-    cd "$BASE/framework/lib" && download_url "$BUILD_ANALYZER_URL"
+    # cd "$BASE/framework/lib" && download_url "$BUILD_ANALYZER_URL"
+    cd "$BASE/framework/lib"
     rm -f "$BUILD_ANALYZER_JAR_LOCAL"
     ln -s "$BUILD_ANALYZER_JAR" "$BUILD_ANALYZER_JAR_LOCAL"
 
