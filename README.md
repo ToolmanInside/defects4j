@@ -125,7 +125,7 @@ Steps to set up Defects4J
 
 2. Initialize Defects4J (download the project repositories and external libraries, which are not included in the git repository for size purposes and to avoid redundancies):
     - `cd defects4j`
-    - `cpanm --installdeps .`
+    - `cpanm --sudo --installdeps .`
 
 3. Download the necessary plugins:
     - Download all files in https://pan.baidu.com/s/10a5gJ1BwSprUXkdpkwx9gQ?pwd=r8ht

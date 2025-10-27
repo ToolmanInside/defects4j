@@ -15,18 +15,18 @@ main() {
         cmd="stat -f %m $ARCHIVE"
     fi
 
-    if [ -e $ARCHIVE ]; then
-        old=$($cmd)
-    else
-        old=0
-    fi
+    # if [ -e $ARCHIVE ]; then
+    #     old=$($cmd)
+    # else
+    #     old=0
+    # fi
     # Only download repos if the server has a newer file
     # download_url "https://defects4j.org/downloads/$ARCHIVE"
 
-    new=$($cmd)
+    # new=$($cmd)
 
     # Exit if no newer file is available
-    [ "$old" == "$new" ] && exit 0
+    # [ "$old" == "$new" ] && exit 0
 
     # Remove old files
     clean
