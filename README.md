@@ -102,7 +102,6 @@ Requirements
 ----------------
  - Java 11
  - Git >= 1.9
- - Subversion (svn) >= 1.8
  - Perl >= 5.0.12
  - `cpanm`
 
