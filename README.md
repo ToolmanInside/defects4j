@@ -115,7 +115,7 @@ Steps to set up Defects4J
 ----------------
 
 1. Clone Defects4J:
-    - `git clone https://github.com/rjust/defects4j`
+    - `git clone https://github.com/ToolmanInside/defects4j`
 
 2. Initialize Defects4J (download the project repositories and external libraries, which are not included in the git repository for size purposes and to avoid redundancies):
     - `cd defects4j`
