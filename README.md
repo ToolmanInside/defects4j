@@ -105,11 +105,6 @@ Requirements
  - Perl >= 5.0.12
  - `cpanm`
 
-Defects4J version 2.x required Java 1.8.
-
-Defects4J version 1.x and 0.x required Java 1.7.
-
-
 #### Perl dependencies
 All required Perl modules are listed in [cpanfile](https://github.com/rjust/defects4j/blob/master/cpanfile).
 On many Unix platforms, these required Perl modules are installed by default.
